@@ -13,7 +13,7 @@
         <!-- Contact & Social -->
         <div class="flex flex-row items-center flex-1 justify-end">
             <!-- Contact Block -->
-            <div class="flex flex-col items-end pr-8 border-r-2 border-gray-100 h-full justify-center flex-1">
+            <div class="flex flex-col items-end pr-8 border-r-2 border-gray-100 h-full justify-center">
                 <span class="text-orange-500 font-bold text-base">ศูนย์บริการช่วยเหลือ</span>
                 <span class="font-bold text-2xl flex items-center">
                     <svg class="w-7 h-7 mr-1 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,7 +25,7 @@
                 <span class="text-xs font-medium text-gray-500">เปิดให้บริการ จันทร์ - เสาร์ 09.00 น. - 18.00 น.</span>
             </div>
             <!-- LINE Block -->
-            <div class="flex flex-col items-center px-8 border-r-2 border-gray-100 h-full justify-center flex-1">
+            <div class="flex flex-col items-center px-8 border-r-2 border-gray-100 h-full justify-center">
                 <span class="text-orange-500 font-bold text-base flex items-center mb-1">
                     <img src="{{asset('images/line_share.svg')}}" alt="" class="w-6 h-6 mr-1">
                     เราพร้อมช่วยคุณ
@@ -33,7 +33,7 @@
                 <span class="text-base font-bold" style="color: #3451a1;">@nexttripholiday</span>
             </div>
             <!-- Social Block -->
-            <div class="flex flex-col items-center pl-8 h-full justify-center flex-1">
+            <div class="flex flex-col items-center pl-8 h-full justify-center">
                 <span class="text-orange-500 text-xs">ติดตามเราที่ช่องทาง</span>
                 <div class="flex space-x-2 mt-1">
                     <a href="#" class="text-blue-600"><img src="{{asset('images/facebook.svg')}}" alt=""></a>
