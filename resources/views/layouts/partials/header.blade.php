@@ -8,12 +8,7 @@
     <div class="container max-w-7xl mx-auto flex flex-row items-center justify-between py-2 px-4">
         <!-- Logo -->
         <div class="flex items-center min-w-[350px]">
-            <img src="/images/logo-nexttrip.svg" 
-                 alt="Next Trip Holiday - บริการจองทัวร์ออนไลน์" 
-                 class="h-20 w-auto mr-8" 
-                 width="120" 
-                 height="80"
-                 loading="eager" />
+            <img src="/images/logo-nexttrip.svg" alt="Next Trip Holiday" class="h-20 w-auto mr-8" />
         </div>
         <!-- Contact & Social -->
         <div class="flex flex-row items-center flex-1 justify-end">
@@ -21,10 +16,10 @@
             <div class="flex flex-col items-end pr-8 border-r-2 border-gray-100 h-full justify-center">
                 <span class="text-orange-500 font-bold text-base">ศูนย์บริการช่วยเหลือ</span>
                 <span class="font-bold text-2xl flex items-center">
-                    <svg class="w-7 h-7 mr-1 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg class="w-7 h-7 mr-1 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v2a2 2 0 01-2.18 2A19.86 19.86 0 013 5.18 2 2 0 015 3h2a2 2 0 012 1.72c.2 1.38.5 2.72.88 4a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.58 6.58l1.27-1.27a2 2 0 012.11-.45c1.28.38 2.62.68 4 0.88A2 2 0 0122 16.92z"/>
                     </svg>
-                    <a href="tel:021369144" class="text-orange-500 hover:text-blue-700 transition-colors" aria-label="โทรศัพท์ 02-136-9144">02-136-9144</a>
+                    <a href="tel:021369144" class="text-orange-500 hover:text-blue-700 transition-colors">02-136-9144</a>
                 </span>
                 <span class="text-xs font-medium" style="color: #3451a1;">Hotline : 091-091-6364 , 091-091-6463 (ตลอดเวลา)</span>
                 <span class="text-xs font-medium text-gray-500">เปิดให้บริการ จันทร์ - เสาร์ 09.00 น. - 18.00 น.</span>
@@ -32,12 +27,7 @@
             <!-- LINE Block -->
             <div class="flex flex-col items-center px-8 border-r-2 border-gray-100 h-full justify-center">
                 <span class="text-orange-500 font-bold text-base flex items-center mb-1">
-                    <img src="{{asset('images/line_share.svg')}}" 
-                         alt="LINE" 
-                         class="w-6 h-6 mr-1" 
-                         width="24" 
-                         height="24"
-                         loading="lazy">
+                    <img src="{{asset('images/line_share.svg')}}" alt="" class="w-6 h-6 mr-1">
                     เราพร้อมช่วยคุณ
                 </span>
                 <span class="text-base font-bold" style="color: #3451a1;">@nexttripholiday</span>
@@ -46,34 +36,10 @@
             <div class="flex flex-col items-center pl-8 h-full justify-center">
                 <span class="text-orange-500 text-xs">ติดตามเราที่ช่องทาง</span>
                 <div class="flex space-x-2 mt-1">
-                    <a href="#" class="text-blue-600" aria-label="Facebook">
-                        <img src="{{asset('images/facebook.svg')}}" 
-                             alt="Facebook" 
-                             width="24" 
-                             height="24" 
-                             loading="lazy">
-                    </a>
-                    <a href="#" class="text-red-600" aria-label="YouTube">
-                        <img src="{{asset('images/youtube.svg')}}" 
-                             alt="YouTube" 
-                             width="24" 
-                             height="24" 
-                             loading="lazy">
-                    </a>
-                    <a href="#" class="text-pink-500" aria-label="Instagram">
-                        <img src="{{asset('images/instagram.svg')}}" 
-                             alt="Instagram" 
-                             width="24" 
-                             height="24" 
-                             loading="lazy">
-                    </a>
-                    <a href="#" class="text-black" aria-label="TikTok">
-                        <img src="{{asset('images/tiktok.svg')}}" 
-                             alt="TikTok" 
-                             width="24" 
-                             height="24" 
-                             loading="lazy">
-                    </a>
+                    <a href="#" class="text-blue-600"><img src="{{asset('images/facebook.svg')}}" alt=""></a>
+                    <a href="#" class="text-red-600"><img src="{{asset('images/youtube.svg')}}" alt=""></a>
+                    <a href="#" class="text-pink-500"><img src="{{asset('images/instagram.svg')}}" alt=""></a>
+                    <a href="#" class="text-black"><img src="{{asset('images/tiktok.svg')}}" alt=""></a>
                 </div>
             </div>
         </div>
@@ -84,30 +50,20 @@
 <div class="md:hidden bg-white w-full font-roboto border-b border-gray-200">
     <div class="flex items-center justify-between px-4 py-3">
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-button" 
-                class="text-gray-600 hover:text-orange-500 focus:outline-none focus:text-orange-500"
-                aria-label="เปิดเมนู"
-                aria-expanded="false">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <button id="mobile-menu-button" class="text-gray-600 hover:text-orange-500 focus:outline-none focus:text-orange-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
         </button>
         
         <!-- Logo -->
         <div class="flex-1 flex justify-center">
-            <img src="/images/logo-nexttrip.svg" 
-                 alt="Next Trip Holiday - บริการจองทัวร์ออนไลน์" 
-                 class="h-12 w-auto" 
-                 width="80" 
-                 height="48"
-                 loading="eager" />
+            <img src="/images/logo-nexttrip.svg" alt="Next Trip Holiday" class="h-12 w-auto" />
         </div>
         
         <!-- Contact Button -->
-        <a href="tel:021369144" 
-           class="text-orange-500 hover:text-orange-600 focus:outline-none"
-           aria-label="โทรศัพท์ 02-136-9144">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <a href="tel:021369144" class="text-orange-500 hover:text-orange-600 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v2a2 2 0 01-2.18 2A19.86 19.86 0 013 5.18 2 2 0 015 3h2a2 2 0 012 1.72c.2 1.38.5 2.72.88 4a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.58 6.58l1.27-1.27a2 2 0 012.11-.45c1.28.38 2.62.68 4 0.88A2 2 0 0122 16.92z"/>
             </svg>
         </a>

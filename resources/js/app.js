@@ -1,51 +1,31 @@
 import './bootstrap';
 
-// Mobile Menu Toggle with Performance Optimization
+// Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     
     if (mobileMenuButton && mobileMenu) {
-        // Use passive event listeners for better performance
         mobileMenuButton.addEventListener('click', function() {
             // Toggle menu visibility with animation
-            const isHidden = mobileMenu.classList.contains('hidden');
-            
-            if (isHidden) {
-                mobileMenu.classList.remove('hidden');
-                mobileMenu.classList.add('show');
-                mobileMenuButton.setAttribute('aria-expanded', 'true');
-            } else {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('show');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-            }
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('show');
             
             // Toggle button active state
             this.classList.toggle('active');
             
-            // Toggle hamburger icon with requestAnimationFrame for smooth animation
-            requestAnimationFrame(() => {
-                const icon = this.querySelector('svg');
-                if (mobileMenu.classList.contains('hidden')) {
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
-                } else {
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
-                }
-            });
-        }, { passive: true });
+            // Toggle hamburger icon
+            const icon = this.querySelector('svg');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+            }
+        });
     }
     
-    // Close mobile menu when clicking outside (with throttling)
-    let isThrottled = false;
+    // Close mobile menu when clicking outside
     document.addEventListener('click', function(event) {
-        if (isThrottled) return;
-        isThrottled = true;
-        
-        setTimeout(() => {
-            isThrottled = false;
-        }, 100);
-        
         if (mobileMenu && mobileMenuButton && 
             !mobileMenu.contains(event.target) && 
             !mobileMenuButton.contains(event.target)) {
@@ -53,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenu.classList.add('hidden');
             mobileMenu.classList.remove('show');
             mobileMenuButton.classList.remove('active');
-            mobileMenuButton.setAttribute('aria-expanded', 'false');
             
             // Reset hamburger icon
             const icon = mobileMenuButton.querySelector('svg');
@@ -61,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
             }
         }
-    }, { passive: true });
+    });
 });
 
 // Smooth Scrolling for Anchor Links

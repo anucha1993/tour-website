@@ -15,8 +15,31 @@
     <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/40"></div>
     
-    <!-- Background Image with Parallax Effect -->
-    <div class="absolute inset-0 bg-cover bg-center transform scale-110 transition-transform duration-1000" style="background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80');">
+    <!-- Background Image Slideshow with Parallax Effect -->
+    <div class="absolute inset-0 overflow-hidden">
+        <!-- Dynamic Slides from Database -->
+        @foreach($slide as $index => $s)
+        <div class="hero-slide absolute inset-0 transition-all duration-1000 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}" 
+             style="background-image:  url('https://nexttripholiday.b-cdn.net/{{ $s->img }}'); 
+                    background-size: cover; 
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    transform: scale(1.05);">
+            <!-- Image Overlay for better text readability -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
+        </div>
+        @endforeach
+        
+    
+    </div>
+    
+    <!-- Dynamic Slide Indicators -->
+    <div class="absolute bottom-4 right-8 flex space-x-2 z-20">
+        @foreach($slide as $index => $s)
+        <button class="slide-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300 {{ $index === 0 ? 'active' : '' }}" 
+                data-slide="{{ $index }}"></button>
+        @endforeach
     </div>
     
     <!-- Floating Elements -->
@@ -26,7 +49,8 @@
         <div class="absolute bottom-1/4 left-1/3 w-3 h-3 bg-orange-200 rounded-full animate-float-slow opacity-40"></div>
     </div>
     
-    <div class="relative z-10 container mx-auto px-4">
+    
+    {{-- <div class="relative z-10 container mx-auto px-4">
         <div class="max-w-4xl">
             <!-- Animated Main Heading -->
             <div class="animate-fade-in-up">
@@ -82,8 +106,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     
+
+
     <!-- Scroll Down Indicator -->
     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -609,6 +635,66 @@
             }
         });
     }
+
+    // Hero Background Slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const indicators = document.querySelectorAll('.slide-indicator');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach((slide, i) => {
+            slide.style.opacity = i === index ? '1' : '0';
+            slide.style.transform = i === index ? 'scale(1)' : 'scale(1.1)';
+        });
+
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+            if (i === index) {
+                indicator.classList.add('active');
+                indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+            } else {
+                indicator.classList.remove('active');
+                indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+            }
+        });
+
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    // Auto slideshow every 5 seconds
+    let slideInterval = setInterval(nextSlide, 5000);
+
+    // Manual control via indicators
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            showSlide(index);
+            // Restart auto slideshow
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+    });
+
+    // Pause slideshow on hover
+    const heroSection = document.querySelector('section');
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+    }
+
+    // Initialize first slide
+    showSlide(0);
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
