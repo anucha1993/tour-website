@@ -81,6 +81,43 @@ img {
     .animate-blob {
         animation-duration: 8s;
     }
+
+    /* ปรับขนาด hero-section ให้เหมาะกับมือถือ */
+    .hero-section {
+        min-height: 60vh;
+        padding: 1.5rem 0.5rem;
+    }
+
+    /* ปรับขนาด font และ layout สำหรับมือถือ */
+    .hero-slide h1, .hero-section h1 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+    .hero-slide p, .hero-section p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    /* ปรับ margin/padding ของปุ่มใน hero-section */
+    .hero-section .btn, .hero-slide .btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+
+    /* ปรับ layout ให้ stack แนวตั้งในมือถือ */
+    .hero-section, .hero-slide {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+    }
+
+    /* ปรับขนาดรูปภาพใน hero-section */
+    .hero-section img, .hero-slide img {
+        max-width: 90vw;
+        height: auto;
+        margin: 0 auto;
+    }
 }
 
 /* High resolution displays */

@@ -3,210 +3,45 @@
 @section('title', 'จองทัวร์ออนไลน์ - แพ็คเกจทัวร์คุณภาพในราคาดีที่สุด')
 
 @section('content')
-<!-- Hero Section - Enhanced with Animations -->
-<section class="relative h-[80vh] bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 flex items-center overflow-hidden">
-    <!-- Animated Background Elements -->
-    <div class="absolute inset-0">
-        <div class="absolute top-10 left-10 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div class="absolute top-0 right-20 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-    </div>
-    
-    <!-- Dark Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/40"></div>
-    
-    <!-- Background Image Slideshow with Parallax Effect -->
-    <div class="absolute inset-0 overflow-hidden">
-        <!-- Dynamic Slides from Database -->
-        @foreach($slide as $index => $s)
-        <div class="hero-slide absolute inset-0 transition-all duration-1000 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}" 
-             style="background-image: url('https://nexttripholiday.b-cdn.net/{{ $s->img }}'); 
-                    background-size: cover; 
-                    background-position: center center;
-                    background-repeat: no-repeat;
-                    transform: scale(1.05);">
-            <!-- Preload critical images -->
-            @if($index === 0)
-                <link rel="preload" as="image" href="https://nexttripholiday.b-cdn.net/{{ $s->img }}">
-            @endif
-            <!-- Image Overlay for better text readability -->
-            <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
-        </div>
-        @endforeach
+
+
+
+<section class="relative isolate">
+  <div class="h-[70svh] bg-[url('https://plus.unsplash.com/premium_photo-1661878091370-4ccb8763756a?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center bg-fixed"></div>
+  <div class="absolute inset-0 -z-10 bg-black/40"></div>
+
+  <div class="absolute inset-0 grid place-items-center">
+    <div class="w-full max-w-4xl px-4 text-center text-white ">
+      <h1 class="text-4xl font-extrabold sm:text-5xl">สำรวจโลกกว้างกับเรา</h1>
+      <p class="mt-2 text-white/90">ดีลทัวร์ต่างประเทศประจำสัปดาห์ อัปเดตราคาเรียลไทม์</p>
+
+      <form class="mx-auto mt-6 grid grid-cols-1 gap-3 sm:grid-cols-5">
+        <input 
+          class="sm:col-span-2 rounded-lg border border-white/50 bg-white/20 px-3 py-2 text-sm text-white placeholder-white/80 focus:border-white focus:ring-2 focus:ring-white focus:outline-none" 
+          placeholder="ปลายทาง">
         
-    
+        <input 
+          type="date" 
+          class="rounded-lg border border-white/50 bg-white/20 px-3 py-2 text-sm text-white placeholder-white/80 focus:border-white focus:ring-2 focus:ring-white focus:outline-none">
+        
+        <select 
+          class="rounded-lg border border-white/50 bg-white/20 px-3 py-2 text-sm text-white focus:border-white focus:ring-2 focus:ring-white focus:outline-none">
+          <option class="text-gray-900">ทั้งหมด</option>
+          <option class="text-gray-900">กรุ๊ปทัวร์</option>
+          <option class="text-gray-900">ส่วนตัว</option>
+        </select>
+        
+        <button 
+          class="rounded-lg bg-orange-500  px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+          ค้นหา
+        </button>
+      </form>
     </div>
-    
-    <!-- Dynamic Slide Indicators -->
-    <div class="absolute bottom-4 right-8 flex space-x-2 z-20">
-        @foreach($slide as $index => $s)
-        <button class="slide-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300 {{ $index === 0 ? 'active' : '' }}" 
-                data-slide="{{ $index }}"></button>
-        @endforeach
-    </div>
-    
-    <!-- Floating Elements -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full animate-float opacity-60"></div>
-        <div class="absolute top-1/3 right-1/3 w-1 h-1 bg-yellow-300 rounded-full animate-float-delay opacity-80"></div>
-        <div class="absolute bottom-1/4 left-1/3 w-3 h-3 bg-orange-200 rounded-full animate-float-slow opacity-40"></div>
-    </div>
-    
-    
-    {{-- <div class="relative z-10 container mx-auto px-4">
-        <div class="max-w-4xl">
-            <!-- Animated Main Heading -->
-            <div class="animate-fade-in-up">
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                    เริ่มต้นการเดินทาง<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-orange-300 animate-gradient-x">ที่น่าจดจำ</span>
-                </h1>
-            </div>
-            
-            <!-- Animated Description -->
-            <div class="animate-fade-in-up animation-delay-300">
-                <p class="text-xl md:text-2xl text-gray-100 mb-8 leading-relaxed max-w-3xl">
-                    ค้นพบจุดหมายปลายทางที่สวยงามทั่วโลก พร้อมแพ็คเกจทัวร์คุณภาพในราคาที่เป็นธรรม
-                    <span class="block text-lg text-yellow-200 mt-2">✈️ ประสบการณ์ที่คุณจะไม่มีวันลืม</span>
-                </p>
-            </div>
-            
-            <!-- Animated Buttons -->
-            <div class="animate-fade-in-up animation-delay-600">
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#packages" class="group bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-black px-8 py-4 rounded-xl font-bold transition-all duration-300 inline-flex items-center justify-center transform hover:scale-105 hover:shadow-2xl shadow-lg">
-                        <span class="mr-2">🎯</span>
-                        ดูแพ็คเกจทัวร์
-                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
-                    <a href="#contact" class="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-orange-600 px-8 py-4 rounded-xl font-bold transition-all duration-300 inline-flex items-center justify-center transform hover:scale-105 backdrop-blur-sm">
-                        <span class="mr-2">📞</span>
-                        ติดต่อเรา
-                        <svg class="w-5 h-5 ml-2 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Stats Section -->
-            <div class="animate-fade-in-up animation-delay-900 mt-12">
-                <div class="grid grid-cols-3 gap-8 max-w-md">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-yellow-300">15+</div>
-                        <div class="text-sm text-gray-300">ปีประสบการณ์</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-yellow-300">10K+</div>
-                        <div class="text-sm text-gray-300">ลูกค้าพึงพอใจ</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-yellow-300">50+</div>
-                        <div class="text-sm text-gray-300">จุดหมายปลายทาง</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    
-
-
-    <!-- Scroll Down Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-        </svg>
-    </div>
+  </div>
 </section>
 
-<!-- Enhanced Search Section -->
-<section class="relative -mt-20 z-30 mx-4 md:mx-8">
-    <div class="bg-white/95 backdrop-blur-lg shadow-2xl rounded-2xl border border-white/20">
-        <div class="container mx-auto px-6 py-8">
-            <!-- Search Header -->
-            <div class="text-center mb-6">
-                <h3 class="text-2xl font-bold text-gray-800 mb-2">🔍 ค้นหาทัวร์ในฝัน</h3>
-                <p class="text-gray-600">เริ่มต้นการวางแผนการเดินทางของคุณที่นี่</p>
-            </div>
-            
-            <!-- Search Form -->
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-                <div class="md:col-span-1 group">
-                    <label class="block text-sm font-semibold text-gray-700 mb-2 group-focus-within:text-orange-500 transition-colors">
-                        🏷️ ประเภททัวร์
-                    </label>
-                    <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 hover:border-orange-300 bg-white">
-                        <option>🏠 ทัวร์ในประเทศ</option>
-                        <option>✈️ ทัวร์ต่างประเทศ</option>
-                        <option>⏰ ทัวร์ 1 วัน</option>
-                        <option>🎉 ทัวร์พิเศษ</option>
-                    </select>
-                </div>
-                
-                <div class="md:col-span-1 group">
-                    <label class="block text-sm font-semibold text-gray-700 mb-2 group-focus-within:text-orange-500 transition-colors">
-                        📍 จุดหมายปลายทาง
-                    </label>
-                    <div class="relative">
-                        <input type="text" placeholder="เช่น ภูเก็ต, ญี่ปุ่น..." class="w-full px-4 py-3 pl-10 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 hover:border-orange-300">
-                        <svg class="absolute left-3 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
-                    </div>
-                </div>
-                
-                <div class="md:col-span-1 group">
-                    <label class="block text-sm font-semibold text-gray-700 mb-2 group-focus-within:text-orange-500 transition-colors">
-                        📅 วันเดินทาง
-                    </label>
-                    <div class="relative">
-                        <input type="date" class="w-full px-4 py-3 pl-10 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 hover:border-orange-300">
-                        <svg class="absolute left-3 top-3.5 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                </div>
-                
-                <div class="md:col-span-1 group">
-                    <label class="block text-sm font-semibold text-gray-700 mb-2 group-focus-within:text-orange-500 transition-colors">
-                        👥 จำนวนผู้เดินทาง
-                    </label>
-                    <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 hover:border-orange-300 bg-white">
-                        <option>1 คน</option>
-                        <option>2 คน</option>
-                        <option>3-5 คน</option>
-                        <option>6-10 คน</option>
-                        <option>มากกว่า 10 คน</option>
-                    </select>
-                </div>
-                
-                <div class="md:col-span-1 flex items-end">
-                    <button class="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center group">
-                        <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                        ค้นหา
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Popular Destinations Quick Links -->
-            <div class="mt-6 pt-6 border-t border-gray-200">
-                <p class="text-sm text-gray-600 mb-3">🔥 จุดหมายยอดนิยม:</p>
-                <div class="flex flex-wrap gap-2">
-                    <button class="px-4 py-2 bg-orange-50 text-orange-600 rounded-full text-sm font-medium hover:bg-orange-100 transition-colors">ภูเก็ต</button>
-                    <button class="px-4 py-2 bg-orange-50 text-orange-600 rounded-full text-sm font-medium hover:bg-orange-100 transition-colors">เชียงใหม่</button>
-                    <button class="px-4 py-2 bg-orange-50 text-orange-600 rounded-full text-sm font-medium hover:bg-orange-100 transition-colors">ญี่ปุ่น</button>
-                    <button class="px-4 py-2 bg-orange-50 text-orange-600 rounded-full text-sm font-medium hover:bg-orange-100 transition-colors">เกาหลี</button>
-                    <button class="px-4 py-2 bg-orange-50 text-orange-600 rounded-full text-sm font-medium hover:bg-orange-100 transition-colors">ยุโรป</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+
 
 <!-- Enhanced Featured Tours Section -->
 <section id="packages" class="py-20 bg-gradient-to-b from-gray-50 to-white">
@@ -228,10 +63,10 @@
         </div>
         
         <!-- Tours Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <!-- Enhanced Tour Card 1 -->
-            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
-                <div class="relative h-64 overflow-hidden">
+            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
+                <div class="relative h-48 sm:h-64 overflow-hidden">
                     <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="ภูเก็ต" 
                          loading="lazy"
@@ -259,7 +94,7 @@
                     </button>
                 </div>
                 
-                <div class="p-6">
+                <div class="p-4 sm:p-6">
                     <!-- Rating -->
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center text-yellow-500">
@@ -310,7 +145,7 @@
                             <span class="text-sm text-gray-500 line-through ml-2">฿12,000</span>
                             <div class="text-xs text-gray-500">ต่อคน (รวมทุกอย่าง)</div>
                         </div>
-                        <button class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg">
+                        <button class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg w-full sm:w-auto">
                             จองเลย
                         </button>
                     </div>
@@ -318,8 +153,8 @@
             </div>
 
             <!-- Enhanced Tour Card 2 -->
-            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
-                <div class="relative h-64 overflow-hidden">
+            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
+                <div class="relative h-48 sm:h-64 overflow-hidden">
                     <img src="https://images.unsplash.com/photo-1552550049-db097c9480d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="เชียงใหม่" 
                          loading="lazy"
@@ -343,7 +178,7 @@
                     </button>
                 </div>
                 
-                <div class="p-6">
+                <div class="p-4 sm:p-6">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center text-yellow-500">
                             <div class="flex">
@@ -391,7 +226,7 @@
                             <span class="text-3xl font-bold text-orange-500">฿6,900</span>
                             <div class="text-xs text-gray-500">ต่อคน (รวมทุกอย่าง)</div>
                         </div>
-                        <button class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg">
+                        <button class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg w-full sm:w-auto">
                             จองเลย
                         </button>
                     </div>
@@ -399,8 +234,8 @@
             </div>
 
             <!-- Enhanced Tour Card 3 -->
-            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
-                <div class="relative h-64 overflow-hidden">
+            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
+                <div class="relative h-48 sm:h-64 overflow-hidden">
                     <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="กรุงเทพ" 
                          loading="lazy"
@@ -424,7 +259,7 @@
                     </button>
                 </div>
                 
-                <div class="p-6">
+                <div class="p-4 sm:p-6">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center text-yellow-500">
                             <div class="flex">
@@ -472,7 +307,7 @@
                             <span class="text-3xl font-bold text-orange-500">฿1,200</span>
                             <div class="text-xs text-gray-500">ต่อคน (รวมทุกอย่าง)</div>
                         </div>
-                        <button class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg">
+                        <button class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg w-full sm:w-auto">
                             จองเลย
                         </button>
                     </div>
@@ -481,8 +316,8 @@
         </div>
 
         <!-- Enhanced View All Button -->
-        <div class="text-center mt-16">
-            <a href="{{ route('packages') }}" class="group inline-flex items-center bg-white border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-10 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+        <div class="text-center mt-10 sm:mt-16">
+            <a href="{{ route('packages') }}" class="group inline-flex items-center bg-white border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-3 sm:px-10 sm:py-4 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-base sm:text-lg">
                 <span class="mr-3">🌟</span>
                 ดูแพ็คเกจทั้งหมด
                 <svg class="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -502,7 +337,7 @@
             <p class="text-gray-600 max-w-2xl mx-auto">เราให้บริการด้วยประสบการณ์และความเชี่ยวชาญมากว่า 15 ปี</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <div class="text-center">
                 <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
