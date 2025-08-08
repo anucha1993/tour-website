@@ -1,30 +1,67 @@
 import './bootstrap';
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle with Performance Optimization
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     
     if (mobileMenuButton && mobileMenu) {
+        // Use passive event listeners for better performance
         mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
+            // Toggle menu visibility with animation
+            const isHidden = mobileMenu.classList.contains('hidden');
             
-            // Toggle hamburger icon
-            const icon = this.querySelector('svg');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('show');
+                mobileMenuButton.setAttribute('aria-expanded', 'true');
             } else {
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('show');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
             }
-        });
+            
+            // Toggle button active state
+            this.classList.toggle('active');
+            
+            // Toggle hamburger icon with requestAnimationFrame for smooth animation
+            requestAnimationFrame(() => {
+                const icon = this.querySelector('svg');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+                } else {
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+                }
+            });
+        }, { passive: true });
     }
     
-    // Close mobile menu when clicking outside
+    // Close mobile menu when clicking outside (with throttling)
+    let isThrottled = false;
     document.addEventListener('click', function(event) {
-        if (mobileMenu && !mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+        if (isThrottled) return;
+        isThrottled = true;
+        
+        setTimeout(() => {
+            isThrottled = false;
+        }, 100);
+        
+        if (mobileMenu && mobileMenuButton && 
+            !mobileMenu.contains(event.target) && 
+            !mobileMenuButton.contains(event.target)) {
+            
             mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('show');
+            mobileMenuButton.classList.remove('active');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            
+            // Reset hamburger icon
+            const icon = mobileMenuButton.querySelector('svg');
+            if (icon) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+            }
         }
-    });
+    }, { passive: true });
 });
 
 // Smooth Scrolling for Anchor Links

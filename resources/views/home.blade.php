@@ -1,26 +1,28 @@
 @extends('layouts.app')
 
-@section('title', 'จองท            <div class="md:col-span-1">
-                <label class="block text-sm font-medium text-gray-700 mb-2">วันเดินทาง</label>
-                <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-            </div>
-            <div class="md:col-span-1">
-                <label class="block text-sm font-medium text-gray-700 mb-2">จำนวนคน</label>
-                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-                    <option>1 คน</option>
-                    <option>2 คน</option>
-                    <option>3-5 คน</option>
-                    <option>มากกว่า 5 คน</option>
-                </select>
-            </div>
-            <div class="md:col-span-1 flex items-end">
-                <button class="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">พ็คเกจทัวร์คุณภาพในราคาดีที่สุด')
+@section('title', 'หน้าแรก')
+@section('description', 'จองทัวร์ออนไลน์ ทัวร์ในประเทศ ทัวร์ต่างประเทศ แพ็คเกจทัวร์คุณภาพ ราคาดี พร้อมบริการดีเยี่ยม Next Trip Holiday ติดต่อ 02-136-9144')
+@section('keywords', 'จองทัวร์, ทัวร์ในประเทศ, ทัวร์ต่างประเทศ, แพ็คเกจทัวร์, ทัวร์ราคาดี, Next Trip Holiday, ภูเก็ต, เชียงใหม่, กรุงเทพ')
+@section('og_title', 'Next Trip Holiday - จองทัวร์ออนไลน์ แพ็คเกจทัวร์คุณภาพ')
+@section('og_description', 'ค้นพบจุดหมายปลายทางที่สวยงามทั่วโลก พร้อมแพ็คเกจทัวร์คุณภาพในราคาที่เป็นธรรม บริการดีเยี่ยม')
+@section('og_image', asset('images/hero-tour-image.jpg'))
+
+@push('preloads')
+    <link rel="preload" href="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" as="image">
+@endpush
 
 @section('content')
 <!-- Hero Section - 40% ของพื้นที่หลัก -->
 <section class="relative h-[60vh] bg-gradient-to-r from-orange-500 to-orange-700 flex items-center">
     <div class="absolute inset-0 bg-black opacity-40"></div>
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80');">
+    <div class="absolute inset-0 bg-cover bg-center">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" 
+             alt="ภาพทิวทัศน์ธรรมชาติสวยงาม สำหรับการท่องเที่ยว" 
+             class="w-full h-full object-cover"
+             width="2074"
+             height="800"
+             loading="eager"
+             fetchpriority="high" />
     </div>
     <div class="relative z-10 container mx-auto px-4">
         <div class="max-w-2xl">
@@ -94,38 +96,49 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Tour Card 1 -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div class="relative h-48">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="ภูเก็ต" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="ทัวร์ภูเก็ต 3 วัน 2 คืน - เที่ยวเกาะพีพี นั่งเรือหางยาว ชมความงามของทะเลอันดามัน" 
+                         class="w-full h-full object-cover"
+                         width="500"
+                         height="192"
+                         loading="lazy">
                     <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                         ลด 30%
                     </div>
                 </div>
                 <div class="p-6">
                     <div class="flex items-center text-yellow-500 mb-2">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                         </svg>
                         <span class="ml-1 text-sm">4.8 (125 รีวิว)</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">ภูเก็ต 3 วัน 2 คืน</h3>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">ทัวร์ภูเก็ต 3 วัน 2 คืน</h3>
                     <p class="text-gray-600 text-sm mb-4">เที่ยวเกาะพีพี นั่งเรือหางยาว ชมความงามของทะเลอันดามัน</p>
                     <div class="flex items-center justify-between">
                         <div>
                             <span class="text-2xl font-bold text-orange-500">฿8,500</span>
                             <span class="text-sm text-gray-500 line-through ml-2">฿12,000</span>
                         </div>
-                        <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                        <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors" 
+                                aria-label="จองทัวร์ภูเก็ต 3 วัน 2 คืน">
                             จองเลย
                         </button>
                     </div>
                 </div>
-            </div>
+            </article>
 
             <!-- Tour Card 2 -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div class="relative h-48">
-                    <img src="https://images.unsplash.com/photo-1552550049-db097c9480d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="เชียงใหม่" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1552550049-db097c9480d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="ทัวร์เชียงใหม่ 4 วัน 3 คืน - เที่ยวดอยสุเทพ ล่องแก่ง ช้อปปิ้งถนนคนเดิน" 
+                         class="w-full h-full object-cover"
+                         width="500"
+                         height="192"
+                         loading="lazy">
                     <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                         ใหม่
                     </div>
@@ -260,11 +273,16 @@
 
 @push('scripts')
 <script>
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('hidden');
-    });
+    // Mobile menu toggle - only if element exists
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('hidden');
+            }
+        });
+    }
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

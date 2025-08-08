@@ -1,2 +1,16 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# ห้าม crawl ไฟล์และโฟลเดอร์ที่ไม่ต้องการ
+Disallow: /admin/
+Disallow: /.env
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /config/
+Disallow: /bootstrap/cache/
+
+# Sitemap location
+Sitemap: https://nexttripholiday.com/sitemap.xml
+
+# Crawl delay (seconds)
+Crawl-delay: 1
