@@ -5,15 +5,25 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-/* Custom Hero Slide Styles */
+/* Performance Optimizations */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Hero Slide Styles - Optimized */
 .hero-slide {
-    background-attachment: fixed !important;
+    background-attachment: scroll !important; /* Better mobile performance */
     background-size: cover !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
     will-change: transform, opacity;
     transform: scale(1.05);
-    transition: all 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    contain: layout style paint; /* CSS containment for better performance */
 }
 
 .hero-slide.active {
@@ -21,23 +31,68 @@
     transform: scale(1) !important;
 }
 
+/* Optimize images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Reduce layout shift */
+.hero-section {
+    min-height: 80vh;
+    contain: layout;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide,
+    .animate-blob,
+    .animate-float,
+    .animate-bounce {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* GPU acceleration for smooth animations */
+.animate-blob,
+.animate-float,
+.animate-bounce,
+.hero-slide {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero-slide {
-        background-attachment: scroll !important; /* Fixed attachment doesn't work well on mobile */
+        background-attachment: scroll !important;
         transform: scale(1.02);
+        transition: all 600ms ease-out; /* Faster on mobile */
     }
     
     .hero-slide.active {
         transform: scale(1) !important;
+    }
+    
+    /* Reduce animations on mobile for better performance */
+    .animate-blob {
+        animation-duration: 8s;
     }
 }
 
 /* High resolution displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .hero-slide {
-        background-size: 110% auto !important; /* Slightly zoom for better quality */
+        background-size: 105% auto !important; /* Reduce oversizing */
     }
+}
+
+/* Optimize font loading */
+@font-face {
+    font-display: swap;
 }
 
 @theme {

@@ -20,12 +20,15 @@
         <!-- Dynamic Slides from Database -->
         @foreach($slide as $index => $s)
         <div class="hero-slide absolute inset-0 transition-all duration-1000 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}" 
-             style="background-image:  url('https://nexttripholiday.b-cdn.net/{{ $s->img }}'); 
+             style="background-image: url('https://nexttripholiday.b-cdn.net/{{ $s->img }}'); 
                     background-size: cover; 
                     background-position: center center;
                     background-repeat: no-repeat;
-                    background-attachment: fixed;
                     transform: scale(1.05);">
+            <!-- Preload critical images -->
+            @if($index === 0)
+                <link rel="preload" as="image" href="https://nexttripholiday.b-cdn.net/{{ $s->img }}">
+            @endif
             <!-- Image Overlay for better text readability -->
             <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
         </div>
@@ -231,6 +234,8 @@
                 <div class="relative h-64 overflow-hidden">
                     <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="ภูเก็ต" 
+                         loading="lazy"
+                         decoding="async"
                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     
                     <!-- Overlay -->
@@ -317,6 +322,8 @@
                 <div class="relative h-64 overflow-hidden">
                     <img src="https://images.unsplash.com/photo-1552550049-db097c9480d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="เชียงใหม่" 
+                         loading="lazy"
+                         decoding="async"
                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -396,6 +403,8 @@
                 <div class="relative h-64 overflow-hidden">
                     <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="กรุงเทพ" 
+                         loading="lazy"
+                         decoding="async"
                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -625,89 +634,119 @@
 
 @push('scripts')
 <script>
-    // Mobile menu toggle - only if element exists
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    if (mobileMenuButton) {
-        mobileMenuButton.addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu) {
-                mobileMenu.classList.toggle('hidden');
-            }
-        });
-    }
+    // Optimize for performance - Run after DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle - only if element exists
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden');
+                }
+            });
+        }
 
-    // Hero Background Slideshow
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.hero-slide');
-    const indicators = document.querySelectorAll('.slide-indicator');
-    const totalSlides = slides.length;
+        // Hero Background Slideshow - Optimized
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const indicators = document.querySelectorAll('.slide-indicator');
+        const totalSlides = slides.length;
 
-    function showSlide(index) {
-        // Hide all slides
-        slides.forEach((slide, i) => {
-            slide.style.opacity = i === index ? '1' : '0';
-            slide.style.transform = i === index ? 'scale(1)' : 'scale(1.1)';
-        });
+        if (totalSlides === 0) return; // Exit if no slides
 
-        // Update indicators
-        indicators.forEach((indicator, i) => {
-            if (i === index) {
-                indicator.classList.add('active');
-                indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-            } else {
-                indicator.classList.remove('active');
-                indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-            }
-        });
+        function showSlide(index) {
+            // Use requestAnimationFrame for smooth animations
+            requestAnimationFrame(() => {
+                slides.forEach((slide, i) => {
+                    if (i === index) {
+                        slide.style.opacity = '1';
+                        slide.style.transform = 'scale(1)';
+                        slide.classList.add('active');
+                    } else {
+                        slide.style.opacity = '0';
+                        slide.style.transform = 'scale(1.05)';
+                        slide.classList.remove('active');
+                    }
+                });
 
-        currentSlide = index;
-    }
+                // Update indicators efficiently
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === index);
+                    indicator.style.backgroundColor = i === index ? 
+                        'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
+                });
+            });
 
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        showSlide(currentSlide);
-    }
+            currentSlide = index;
+        }
 
-    // Auto slideshow every 5 seconds
-    let slideInterval = setInterval(nextSlide, 5000);
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
 
-    // Manual control via indicators
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            clearInterval(slideInterval);
-            showSlide(index);
-            // Restart auto slideshow
-            slideInterval = setInterval(nextSlide, 5000);
-        });
+        // Debounced slideshow for better performance
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        // Manual control via indicators - Use event delegation
+        const indicatorContainer = document.querySelector('.absolute.bottom-4.right-8');
+        if (indicatorContainer) {
+            indicatorContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('slide-indicator')) {
+                    const index = parseInt(e.target.dataset.slide);
+                    clearInterval(slideInterval);
+                    showSlide(index);
+                    // Restart auto slideshow
+                    slideInterval = setInterval(nextSlide, 5000);
+                }
+            });
+        }
+
+        // Pause slideshow on hover - Use passive listeners
+        const heroSection = document.querySelector('section');
+        if (heroSection) {
+            heroSection.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            }, { passive: true });
+
+            heroSection.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            }, { passive: true });
+        }
+
+        // Initialize first slide
+        showSlide(0);
+
+        // Preload next images for smoother transitions
+        function preloadNextImages() {
+            slides.forEach((slide, index) => {
+                if (index > 0 && index <= 2) { // Preload first 3 images
+                    const img = new Image();
+                    const bgImage = slide.style.backgroundImage;
+                    const url = bgImage.slice(5, -2); // Remove url(" and ")
+                    img.src = url;
+                }
+            });
+        }
+
+        // Preload after initial render
+        setTimeout(preloadNextImages, 1000);
     });
 
-    // Pause slideshow on hover
-    const heroSection = document.querySelector('section');
-    if (heroSection) {
-        heroSection.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-        });
-
-        heroSection.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(nextSlide, 5000);
-        });
-    }
-
-    // Initialize first slide
-    showSlide(0);
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    // Smooth scrolling for anchor links - Use passive listeners
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href^="#"]');
+        if (link) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(link.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             }
-        });
-    });
+        }
+    }, { passive: false });
 </script>
 @endpush
