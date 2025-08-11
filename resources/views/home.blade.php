@@ -52,52 +52,35 @@
         นำเสนอโปรโมชั่นยอดฮิต
     </p>
 
-
-            <div class="overflow-hidden">
-                <div class="flex gap-4 animate-[promo_20s_linear_infinite]">
-                    <!-- Slide set 1 -->
-                    <div class="w-1/5 shrink-0">
-                        <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}"
-                            alt="ภาพ 1" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=400&auto=format&fit=crop"
-                            alt="ภาพ 2" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=400&auto=format&fit=crop"
-                            alt="ภาพ 3" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
-                    </div>
-                    <!-- Duplicate set for infinite loop -->
-                    <div class="w-1/5 shrink-0">
-                        <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}"
-                            alt="ภาพ 1" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=400&auto=format&fit=crop"
-                            alt="ภาพ 2" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="w-1/5 shrink-0">
-                        <img src="{{ asset('images/promo/photo-1500530855697-b586d89ba3ee.webp') }}"
-                            alt="ภาพ 3" class="w-full aspect-[1/1] object-cover rounded-xl">
-                    </div>
-                </div>
+<div class="overflow-hidden">
+    <div class="flex gap-4 animate-promo-marquee whitespace-nowrap">
+        @foreach($ads as $ad)
+            <div class="inline-block w-80">
+                <img src="https://nexttripholiday.b-cdn.net/{{ $ad->img }}"
+                    alt="ภาพโปรโมชัน" class="w-full aspect-[2/1] object-cover rounded-xl" width="396" height="191" loading="lazy">
             </div>
+        @endforeach
+        @foreach($ads as $ad)
+            <div class="inline-block w-80">
+                <img src="https://nexttripholiday.b-cdn.net/{{ $ad->img }}"
+                    alt="ภาพโปรโมชัน" class="w-full aspect-[2/1] object-cover rounded-xl" width="396" height="191" loading="lazy">
+            </div>
+        @endforeach
+    </div>
+</div>
+
         </div>
     </section>
 
-    <style>
-        @keyframes promo {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-    </style>
-
+<style>
+@keyframes promo-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-promo-marquee {
+    animation: promo-marquee 20s linear infinite;
+}
+</style>
 
 
 
@@ -113,7 +96,7 @@
                     </svg>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    ✨ แพ็คเกจทัวร์ยอดนิยม
+                    ✨ ประเทศยอดนิยม
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     ค้นพบแพ็คเกจทัวร์ที่ได้รับความนิยมสูงสุด พร้อมสถานที่ท่องเที่ยวที่สวยงาม
@@ -672,6 +655,9 @@
                     ดูรีวิวทั้งหมด
                 </a>
             </div>
+
+
+
         </div>
     </section>
 
