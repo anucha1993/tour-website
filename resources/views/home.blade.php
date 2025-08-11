@@ -11,7 +11,7 @@
         <!-- ใช้ภาพ hero ที่บีบอัดขนาดเล็กลง (ตัวอย่าง: 600px) -->
       <img src="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}"
            alt="สำรวจโลกกว้างกับเรา"
-           width="1920" height="800"
+           width="1920" height="800" fetchpriority="high"
            class="w-full h-[60vh] object-cover object-center block" style="max-height:60vh;">
         <div class="absolute inset-0 -z-10 bg-black/30"></div>
 
