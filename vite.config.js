@@ -10,4 +10,23 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    build: {
+        rollupOptions: {
+            external: ['fsevents'],
+            output: {
+                manualChunks: undefined
+            }
+        },
+        cssCodeSplit: true,
+        minify: 'terser',
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true
+            }
+        }
+    },
+    optimizeDeps: {
+        include: []
+    }
 });

@@ -15,12 +15,25 @@
 
     <title>{{ config('app.name', 'Tour Booking') }} - @yield('title', 'จองทัวร์ออนไลน์')</title>
 
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="@yield('description', 'จองทัวร์ออนไลน์ แพ็คเกจทัวร์คุณภาพในราคาดีที่สุด ทัวร์ในประเทศและต่างประเทศ')">
+    <meta name="keywords" content="ทัวร์, จองทัวร์, แพ็คเกจทัวร์, ทัวร์ต่างประเทศ, ทัวร์ในประเทศ">
+    <meta name="author" content="{{ config('app.name') }}">
+    <meta property="og:title" content="@yield('title', 'จองทัวร์ออนไลน์')">
+    <meta property="og:description" content="@yield('description', 'จองทัวร์ออนไลน์ แพ็คเกจทัวร์คุณภาพในราคาดีที่สุด')">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:image" content="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}">
+
     <!-- Performance Optimization -->
-    <link rel="preconnect" href="https://nexttripholiday.b-cdn.net">
-    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://nexttripholiday.b-cdn.net" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://fonts.bunny.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <!-- Preload critical resources -->
+    @stack('preload')
 
     <!-- Critical CSS Inline -->
     <style>
@@ -53,25 +66,21 @@
     </style>
 
     <!-- Fonts with display=swap for better performance -->
-    <!-- Preload Kanit font for faster LCP and remove unused fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="all" onload="this.media='all'">
+    <!-- Optimized font loading -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <!-- Add cache-busting meta tag -->
+    <meta name="build-version" content="{{ filemtime(public_path('build/manifest.json')) }}">
 
     @stack('styles')
 </head>
 
-<body class="font-thai bg-gray-50 antialiased">
-
-    <style>
-        body {
-            font-family: 'Kanit', sans-serif;
-        }
-    </style>
+<body class="font-thai bg-gray-50 antialiased" style="font-family: 'Kanit', sans-serif;">
     
     <!-- Header Section - 15% ของความสูงหน้าจอ -->
     <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
@@ -91,6 +100,28 @@
 
     <!-- Scripts -->
     @stack('scripts')
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Remove any old CSS references that might be cached
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove any link tags that reference non-existent CSS files
+            const badLinks = document.querySelectorAll('link[href*="/css/app.css"]');
+            badLinks.forEach(link => link.remove());
+        });
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        // SW registered successfully
+                    })
+                    .catch((registrationError) => {
+                        // SW registration failed
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>

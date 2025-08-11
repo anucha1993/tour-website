@@ -1,11 +1,10 @@
 // Service Worker for caching static assets
-const CACHE_NAME = 'tour-website-v1';
+const CACHE_NAME = 'tour-website-v3';
 const STATIC_CACHE = [
     '/',
-    '/css/app.css',
-    '/js/app.js',
-    'https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap',
-    'https://fonts.bunny.net/css?family=prompt:300,400,500,600,700&display=swap'
+    '/build/assets/app-DVsBem29.css',
+    '/build/assets/app-BM70wakr.js',
+    '/images/hero/bandner_สำรวจโลกกว้างกับเรา.webp'
 ];
 
 // Install event
@@ -43,8 +42,29 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                // Return cached version or fetch from network
-                return response || fetch(event.request);
+                if (response) {
+                    return response;
+                }
+                
+                // For external resources, use network first strategy
+                if (event.request.url.startsWith('https://')) {
+                    return fetch(event.request).then(fetchResponse => {
+                        // Only cache successful responses
+                        if (fetchResponse.status === 200) {
+                            const responseClone = fetchResponse.clone();
+                            caches.open(CACHE_NAME).then(cache => {
+                                cache.put(event.request, responseClone);
+                            });
+                        }
+                        return fetchResponse;
+                    }).catch(() => {
+                        // Return offline fallback if needed
+                        return new Response('Offline', { status: 503 });
+                    });
+                }
+                
+                // For local resources, use cache first strategy
+                return fetch(event.request);
             })
     );
 });

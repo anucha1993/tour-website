@@ -10,7 +10,7 @@ use Spatie\ResponseCache\Middlewares\CacheResponse;
 
 
 // Apply response cache middleware to public routes
-Route::middleware([CacheResponse::class])->group(function () {
+// Route::middleware([CacheResponse::class])->group(function () {
     Route::get('/',[HomeController::class, 'index'])->name('home');
     Route::get('/packages', function () {
         return view('packages');
@@ -24,7 +24,7 @@ Route::middleware([CacheResponse::class])->group(function () {
     Route::get('/contact', function () {
         return view('contact');
     })->name('contact');
-});
+// });
 
 // Authentication Routes (do not cache)
 Route::get('/login', function () {
