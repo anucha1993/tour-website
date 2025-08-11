@@ -2,33 +2,17 @@
 
 @section('title', 'จองทัวร์ออนไลน์ - แพ็คเกจทัวร์คุณภาพในราคาดีที่สุด')
 
-@push('preload')
-    <!-- Preload hero image for better LCP -->
-    <link rel="preload" as="image" href="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}" fetchpriority="high">
-@endpush
-
 @section('content')
 
 
 
 
     <section class="relative isolate">
-        <!-- Optimized hero image with responsive loading -->
-        <picture>
-            <source media="(max-width: 768px)" 
-                    srcset="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}" 
-                    type="image/webp">
-            <source media="(min-width: 769px)" 
-                    srcset="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}" 
-                    type="image/webp">
-            <img src="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}" 
-                 width="1200" height="600"
-                 class="w-full h-[60vh] object-cover object-center block"
-                 alt="สำรวจโลกกว้างกับเรา" 
-                 fetchpriority="high"
-                 decoding="sync"
-                 style="max-height:60vh;">
-        </picture>
+        <!-- ใช้ภาพ hero ที่บีบอัดขนาดเล็กลง (ตัวอย่าง: 600px) -->
+      <img src="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}" width="1200" height="600" class="w-full h-auto max-w-full" alt="Hero" loading="eager"
+           alt="สำรวจโลกกว้างกับเรา"
+           width="1920" height="800" fetchpriority="high"
+           class="w-full h-[60vh] object-cover object-center block" style="max-height:60vh;">
         <div class="absolute inset-0 -z-10 bg-black/30"></div>
 
         <div class="absolute inset-0 grid place-items-center">
@@ -59,38 +43,46 @@
 
 
     <section class="bg-white py-8">
-        <div class="mx-auto max-w-7xl px-4 text-center">
-            <h2 class="text-lg font-bold text-orange-600 mt-6 mb-0">
-                บริษัททัวร์ในประเทศ ทัวร์ต่างประเทศ ชั้นนำของไทย
-            </h2>
+       <div class="mx-auto max-w-7xl px-4 text-center">
+    <h2 class="text-lg font-bold text-orange-600 mt-6 mb-0">
+        บริษัททัวร์ในประเทศ ทัวร์ต่างประเทศ ชั้นนำของไทย
+    </h2>
+    
+    <p class="text-sm text-gray-600  mb-6">
+        นำเสนอโปรโมชั่นยอดฮิต
+    </p>
 
-            <p class="text-sm text-gray-600  mb-6">
-                นำเสนอโปรโมชั่นยอดฮิต
-            </p>
-
-            <div class="overflow-hidden">
-                <div class="flex gap-4 animate-promo-marquee whitespace-nowrap">
-                    @foreach ($ads as $index => $ad)
-                        <div class="inline-block w-80">
-                            <img src="https://nexttripholiday.b-cdn.net/{{ $ad->img }}" alt="ภาพโปรโมชัน"
-                                class="w-full aspect-[2/1] object-cover rounded-xl" width="396" height="191"
-                                loading="{{ $index < 3 ? 'eager' : 'lazy' }}"
-                                decoding="async">
-                        </div>
-                    @endforeach
-                    @foreach ($ads as $index => $ad)
-                        <div class="inline-block w-80">
-                            <img src="https://nexttripholiday.b-cdn.net/{{ $ad->img }}" alt="ภาพโปรโมชัน"
-                                class="w-full aspect-[2/1] object-cover rounded-xl" width="396" height="191"
-                                loading="lazy"
-                                decoding="async">
-                        </div>
-                    @endforeach
-                </div>
+<div class="overflow-hidden">
+    <div class="flex gap-4 animate-promo-marquee whitespace-nowrap">
+        @foreach($ads as $ad)
+            <div class="inline-block w-80">
+                <img src="https://nexttripholiday.b-cdn.net/{{ $ad->img }}"
+                    alt="ภาพโปรโมชัน" class="w-full aspect-[2/1] object-cover rounded-xl" width="396" height="191" loading="lazy">
             </div>
+        @endforeach
+        @foreach($ads as $ad)
+            <div class="inline-block w-80">
+                <img src="https://nexttripholiday.b-cdn.net/{{ $ad->img }}"
+                    alt="ภาพโปรโมชัน" class="w-full aspect-[2/1] object-cover rounded-xl" width="396" height="191" loading="lazy">
+            </div>
+        @endforeach
+    </div>
+</div>
 
         </div>
     </section>
+
+<style>
+@keyframes promo-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-promo-marquee {
+    animation: promo-marquee 20s linear infinite;
+}
+</style>
+
+
 
     <!-- Enhanced Featured Tours Section -->
     <section id="packages" class="py-20 bg-gradient-to-b from-gray-50 to-white">
@@ -104,7 +96,7 @@
                     </svg>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    ✨ ประเทศยอดนิยม
+                    ✨ แพ็คเกจทัวร์ยอดนิยม
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     ค้นพบแพ็คเกจทัวร์ที่ได้รับความนิยมสูงสุด พร้อมสถานที่ท่องเที่ยวที่สวยงาม
@@ -112,158 +104,297 @@
                 </p>
             </div>
 
-            {{-- <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block">
-                    <div class="row">
-                        <div class="col">
-                            <div id="carousel">
-                                <ul class="flip-items">
-                                    @foreach (@$country as $co)
-                                    @php
-                                        $tour_count = App\Models\Backend\TourModel::where('country_id','like','%"'.@$co->id.'"%')->count();
-                                    @endphp
-                                    <li>
-                                        <a href="{{url('oversea/'.$co->slug)}}">
-                                            @if ($co->img_banner)
-                                                {{-- <img src="{{asset(@$co->img_banner)}}"> 
-                                                <img src="https://nexttripholiday.b-cdn.net/{{ @$co->img_banner }}">
-                                            @else
-                                                <img src="{{asset('frontend/images/country.webp')}}">
-                                            @endif
-                                            <div class="contents">
-                                                <h3>ทัวร์ประเทศ{{@$co->country_name_th}}</h3>
-                                                <span>{{@$tour_count}} โปรแกรมทัวร์</span>
-                                            </div>
-                                            <div class="textbotp">
-                                                <p>{!! @$co->description !!}</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-
             <!-- Tours Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Enhanced Tour Card 1 -->
-                @foreach (@$country as $index => $co)
-                    @php
-                        $tour_count = App\Models\Backend\TourModel::where(
-                            'country_id',
-                            'like',
-                            '%"' . @$co->id . '"%',
-                        )->count();
-                    @endphp
-                    <div
-                        class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
-                        <div class="relative h-48 sm:h-64 overflow-hidden">
-                            <img src="https://nexttripholiday.b-cdn.net/{{ @$co->img_banner }}"
-                                alt="ทัวร์{{ @$co->country_name_th }}" 
-                                loading="{{ $index < 6 ? 'eager' : 'lazy' }}" 
-                                decoding="async"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                width="400" 
-                                height="300">
+                <div
+                    class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
+                    <div class="relative h-48 sm:h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                            alt="ภูเก็ต" loading="lazy" decoding="async"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
-                            <!-- Overlay -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <!-- Overlay -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+
+                        <!-- Discount Badge -->
+                        <div
+                            class="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
+                            🔥 ลด 30%
+                        </div>
+
+                        <!-- Location Badge -->
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            📍 ภูเก็ต
+                        </div>
+
+                        <!-- Heart Icon -->
+                        <button
+                            class="absolute bottom-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500 transition-colors duration-300 opacity-0 group-hover:opacity-100">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="p-4 sm:p-6">
+                        <!-- Rating -->
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <div class="flex">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </div>
+                                <span class="ml-2 text-sm font-semibold text-gray-600">4.8 (125 รีวิว)</span>
                             </div>
-
-                            <!-- Discount Badge -->
-                            <div
-                                class="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
-                                🔥 ลด 30%
-                            </div>
-
-                            <!-- Location Badge -->
-                            <div
-                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">
-                                📍 ภูเก็ต
-                            </div>
-
-                            <!-- Heart Icon -->
-                            <button
-                                class="absolute bottom-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500 transition-colors duration-300 opacity-0 group-hover:opacity-100">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
+                                3 วัน 2 คืน
+                            </div>
+                        </div>
+
+                        <h3
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors duration-300">
+                            🏝️ ภูเก็ต เกาะในฝัน
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                            เที่ยวเกาะพีพี นั่งเรือหางยาว ชมความงามของทะเลอันดามัน พร้อมกิจกรรมน้ำที่น่าตื่นเต้น
+                        </p>
+
+                        <!-- Features -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">🏨 โรงแรม 4⭐</span>
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded-full">🍽️ อาหาร 6 มื้อ</span>
+                            <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded-full">🚗 รถปรับอากาศ</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-3xl font-bold text-orange-500">฿8,500</span>
+                                <span class="text-sm text-gray-500 line-through ml-2">฿12,000</span>
+                                <div class="text-xs text-gray-500">ต่อคน (รวมทุกอย่าง)</div>
+                            </div>
+                            <button
+                                class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg w-full sm:w-auto">
+                                จองเลย
                             </button>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="p-4 sm:p-6">
-                            <!-- Rating -->
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="flex items-center text-yellow-500">
-                                    <div class="flex">
-                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
-                                    </div>
-                                    <span class="ml-2 text-sm font-semibold text-gray-600">4.8 (125 รีวิว)</span>
-                                </div>
-                                <div class="flex items-center text-sm text-gray-500">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <!-- Enhanced Tour Card 2 -->
+                <div
+                    class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
+                    <div class="relative h-48 sm:h-64 overflow-hidden">
+                        <img src="{{ asset('images/promo/photo-1552550049-db097c9480d1.webp') }}"
+                            alt="เชียงใหม่" loading="lazy" decoding="async"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+
+                        <div
+                            class="absolute top-4 right-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                            🆕 ใหม่
+                        </div>
+
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            🏔️ เชียงใหม่
+                        </div>
+
+                        <button
+                            class="absolute bottom-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500 transition-colors duration-300 opacity-0 group-hover:opacity-100">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="p-4 sm:p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <div class="flex">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                     </svg>
-                                    3 วัน 2 คืน
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
                                 </div>
+                                <span class="ml-2 text-sm font-semibold text-gray-600">4.9 (89 รีวิว)</span>
                             </div>
-
-                            <h3
-                                class="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors duration-300">
-                                🏝️ ภูเก็ต เกาะในฝัน
-                            </h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                                เที่ยวเกาะพีพี นั่งเรือหางยาว ชมความงามของทะเลอันดามัน พร้อมกิจกรรมน้ำที่น่าตื่นเต้น
-                            </p>
-
-                            <!-- Features -->
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">🏨 โรงแรม 4⭐</span>
-                                <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded-full">🍽️ อาหาร 6
-                                    มื้อ</span>
-                                <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded-full">🚗
-                                    รถปรับอากาศ</span>
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <span class="text-3xl font-bold text-orange-500">฿8,500</span>
-                                    <span class="text-sm text-gray-500 line-through ml-2">฿12,000</span>
-                                    <div class="text-xs text-gray-500">ต่อคน (รวมทุกอย่าง)</div>
-                                </div>
-                                <button
-                                    class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg w-full sm:w-auto">
-                                    จองเลย
-                                </button>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                4 วัน 3 คืน
                             </div>
                         </div>
+
+                        <h3
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors duration-300">
+                            🌸 เชียงใหม่ ดินแดนล้านนา
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                            เที่ยวดอยสุเทพ ล่องแก่ง ช้อปปิ้งถนนคนเดิน สัมผัสวัฒนธรรมล้านนาแท้
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">🏨 โรงแรม 4⭐</span>
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded-full">🍽️ อาหาร 8 มื้อ</span>
+                            <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded-full">🎭 วัฟนธรรม</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-3xl font-bold text-orange-500">฿6,900</span>
+                                <div class="text-xs text-gray-500">ต่อคน (รวมทุกอย่าง)</div>
+                            </div>
+                            <button
+                                class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg w-full sm:w-auto">
+                                จองเลย
+                            </button>
+                        </div>
                     </div>
-                     @endforeach
+                </div>
 
+                <!-- Enhanced Tour Card 3 -->
+                <div
+                    class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
+                    <div class="relative h-48 sm:h-64 overflow-hidden">
+                        <img src="{{ asset('images/promo/photo-1528181304800-259b08848526.webp') }}" width="600" height="400" class="w-full h-auto max-w-full" alt="กรุงเทพ เมืองแห่งวัฒนธรรม" loading="lazy"
+                            alt="กรุงเทพ" loading="lazy" decoding="async"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+
+                        <div
+                            class="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                            💯 ยอดนิยม
+                        </div>
+
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            🏛️ กรุงเทพ
+                        </div>
+
+                        <button
+                            class="absolute bottom-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500 transition-colors duration-300 opacity-0 group-hover:opacity-100">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="p-4 sm:p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <div class="flex">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 text-gray-300 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </div>
+                                <span class="ml-2 text-sm font-semibold text-gray-600">4.7 (156 รีวิว)</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                1 วัน
+                            </div>
+                        </div>
+
+                        <h3
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors duration-300">
+                            🏛️ กรุงเทพ เมืองแห่งวัฒนธรรม
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                            เที่ยวชมวัดพระแก้ว พระบรมมหาราชวัง ล่องเรือเจ้าพระยา สัมผัสประวัติศาสตร์ไทย
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">🚌 รถทัวร์</span>
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded-full">🍽️ อาหาร 2 มื้อ</span>
+                            <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded-full">🎭
+                                ไกด์ท้องถิ่น</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-3xl font-bold text-orange-500">฿1,200</span>
+                                <div class="text-xs text-gray-500">ต่อคน (รวมทุกอย่าง)</div>
+                            </div>
+                            <button
+                                class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg w-full sm:w-auto">
+                                จองเลย
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Enhanced View All Button -->
@@ -309,8 +440,7 @@
                 <div class="tab-content grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="popular">
                     <!-- Card -->
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-                        <img src="{{ asset('images/promo/photo-1528909514045-2fa4ac7a08ba1.webp') }}" width="400"
-                            height="300" class="w-full h-auto max-w-full" alt="รีวิวทริป – ไต้หวัน" loading="lazy"
+                        <img src="{{ asset('images/promo/photo-1528909514045-2fa4ac7a08ba1.webp') }}" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิวทริป – ไต้หวัน" loading="lazy"
                             alt="" class="h-48 w-full object-cover">
                         <div class="p-4">
                             <div class="flex items-center text-xs text-gray-500 mb-2">
@@ -329,8 +459,7 @@
                 <!-- Cheap -->
                 <div class="tab-content hidden grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="cheap">
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-                        <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}" width="400"
-                            height="300" class="w-full h-auto max-w-full" alt="รีวิวทริป – จิ่วไจ้โกว" loading="lazy"
+                        <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิวทริป – จิ่วไจ้โกว" loading="lazy"
                             alt="" class="h-48 w-full object-cover">
                         <div class="p-4">
                             <div class="flex items-center text-xs text-gray-500 mb-2">
@@ -366,8 +495,8 @@
                 <!-- Discount -->
                 <div class="tab-content hidden grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="discount">
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-                        <img src="{{ asset('images/promo/photo-1500530855697-b586d89ba3ee.webp') }}" alt=""
-                            class="h-48 w-full object-cover">
+                        <img src="{{ asset('images/promo/photo-1500530855697-b586d89ba3ee.webp') }}"
+                            alt="" class="h-48 w-full object-cover">
                         <div class="p-4">
                             <div class="flex items-center text-xs text-gray-500 mb-2">
                                 <span class="bg-green-500 text-white px-2 py-0.5 rounded mr-2">ลดราคา</span>
@@ -475,10 +604,8 @@
                 <article class="lg:col-span-4 overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
                     <!-- ภาพหลัก -->
                     <div class="aspect-[16/10]">
-                        <img src="https://images.unsplash.com/photo-1591076232271-e80adf362a13?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9uZyUyMEtvbmclMjB3b3JzaGlwfGVufDB8fDB8fHww"
-                            width="400" height="300" class="w-full h-auto max-w-full"
-                            alt="รีวิวทริป ฮ่องกง ไหว้พระ ราคาดีเว่อร์" loading="lazy" class="h-full w-full object-cover"
-                            alt="รีวิวทริป ฮ่องกง ไหว้พระ ราคาดีเว่อร์">
+                        <img src="https://images.unsplash.com/photo-1591076232271-e80adf362a13?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9uZyUyMEtvbmclMjB3b3JzaGlwfGVufDB8fDB8fHww" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิวทริป ฮ่องกง ไหว้พระ ราคาดีเว่อร์" loading="lazy"
+                            class="h-full w-full object-cover" alt="รีวิวทริป ฮ่องกง ไหว้พระ ราคาดีเว่อร์">
                     </div>
 
                     <!-- เนื้อหา -->
@@ -499,9 +626,8 @@
                 <!-- center image card -->
                 <article class="lg:col-span-4 overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
                     <div class="aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1635772512104-98695c3a73f1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Sml1emhhaWdvdXxlbnwwfHwwfHx8MA%3D%3D"
-                            width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิว – ไหว้พระจีน"
-                            loading="lazy" class="h-full w-full object-cover" alt="รีวิว – ไหว้พระจีน">
+                        <img src="https://images.unsplash.com/photo-1635772512104-98695c3a73f1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Sml1emhhaWdvdXxlbnwwfHwwfHx8MA%3D%3D" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิว – ไหว้พระจีน" loading="lazy"
+                            class="h-full w-full object-cover" alt="รีวิว – ไหว้พระจีน">
                     </div>
                     <div class="p-5">
                         <h3 class="text-base font-semibold text-gray-900">รีวิวทริป จีน ฮาร์บิน & จิ่วไจ้โกว</h3>
@@ -512,8 +638,7 @@
                 <!-- right big image card -->
                 <article class="lg:col-span-4 overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
                     <div class="aspect-[16/10]">
-                        <img src="{{ asset('images/promo/photo-1504218727796-db522606b16f.webp') }}" width="400"
-                            height="300" class="w-full h-auto max-w-full" alt="รีวิว – ธรรมชาติยุโรป" loading="lazy"
+                        <img src="{{ asset('images/promo/photo-1504218727796-db522606b16f.webp') }}" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิว – ธรรมชาติยุโรป" loading="lazy"
                             class="h-full w-full object-cover" alt="รีวิว – ธรรมชาติยุโรป">
                     </div>
                     <div class="p-5">
@@ -702,53 +827,49 @@
 
 @push('scripts')
     <script>
-        // Optimized tab functionality
+        // Tab functionality
         document.addEventListener('DOMContentLoaded', function() {
             const tabBtns = document.querySelectorAll(".tab-btn");
             const tabContents = document.querySelectorAll(".tab-content");
 
-            tabBtns.forEach(btn => {
-                btn.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    
-                    // Use requestAnimationFrame for better performance
-                    requestAnimationFrame(() => {
-                        tabBtns.forEach(b => {
-                            b.classList.remove("text-orange-600", "border-orange-600", "border-b-2");
-                            b.classList.add("text-gray-500");
-                        });
-                        
-                        btn.classList.add("text-orange-600", "border-orange-600", "border-b-2");
-                        btn.classList.remove("text-gray-500");
+            function switchTab(targetTab) {
+                // Remove active state from all buttons
+                tabBtns.forEach(btn => {
+                    btn.classList.remove("text-orange-600", "border-orange-600", "border-b-2");
+                    btn.classList.add("text-gray-500");
+                });
 
-                        const target = btn.dataset.tab;
-                        tabContents.forEach(content => {
-                            content.style.display = content.id === target ? 'grid' : 'none';
-                        });
-                    });
-                }, { passive: true });
+                // Hide all tab contents
+                tabContents.forEach(content => {
+                    content.classList.add("hidden");
+                });
+
+                // Add active state to clicked button
+                const activeBtn = document.querySelector(`[data-tab="${targetTab}"]`);
+                if (activeBtn) {
+                    activeBtn.classList.add("text-orange-600", "border-orange-600", "border-b-2");
+                    activeBtn.classList.remove("text-gray-500");
+                }
+
+                // Show target tab content
+                const targetContent = document.getElementById(targetTab);
+                if (targetContent) {
+                    targetContent.classList.remove("hidden");
+                }
+            }
+
+            // Add click event listeners
+            tabBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const target = btn.dataset.tab;
+                    switchTab(target);
+                });
             });
 
-            // Intersection Observer for lazy loading
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            if (img.dataset.src) {
-                                img.src = img.dataset.src;
-                                img.removeAttribute('data-src');
-                                observer.unobserve(img);
-                            }
-                        }
-                    });
-                }, {
-                    rootMargin: '50px 0px'
-                });
-
-                document.querySelectorAll('img[data-src]').forEach(img => {
-                    imageObserver.observe(img);
-                });
+            // Initialize first tab as active
+            if (tabBtns.length > 0) {
+                const firstTab = tabBtns[0].dataset.tab;
+                switchTab(firstTab);
             }
         });
     </script>
@@ -767,51 +888,112 @@
                 });
             }
 
-            // Reduced complexity slideshow
+            // Hero Background Slideshow - Optimized
             let currentSlide = 0;
             const slides = document.querySelectorAll('.hero-slide');
             const indicators = document.querySelectorAll('.slide-indicator');
-            
-            if (slides.length === 0) return; // Exit if no slides
+            const totalSlides = slides.length;
+
+            if (totalSlides === 0) return; // Exit if no slides
 
             function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.style.opacity = i === index ? '1' : '0';
+                // Use requestAnimationFrame for smooth animations
+                requestAnimationFrame(() => {
+                    slides.forEach((slide, i) => {
+                        if (i === index) {
+                            slide.style.opacity = '1';
+                            slide.style.transform = 'scale(1)';
+                            slide.classList.add('active');
+                        } else {
+                            slide.style.opacity = '0';
+                            slide.style.transform = 'scale(1.05)';
+                            slide.classList.remove('active');
+                        }
+                    });
+
+                    // Update indicators efficiently
+                    indicators.forEach((indicator, i) => {
+                        indicator.classList.toggle('active', i === index);
+                        indicator.style.backgroundColor = i === index ?
+                            'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)';
+                    });
                 });
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.toggle('active', i === index);
-                });
+
                 currentSlide = index;
             }
 
-            // Slower slideshow for better performance
-            if (slides.length > 1) {
-                setInterval(() => {
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    showSlide(currentSlide);
-                }, 8000);
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
             }
 
+            // Debounced slideshow for better performance
+            let slideInterval = setInterval(nextSlide, 5000);
+
+            // Manual control via indicators - Use event delegation
+            const indicatorContainer = document.querySelector('.absolute.bottom-4.right-8');
+            if (indicatorContainer) {
+                indicatorContainer.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('slide-indicator')) {
+                        const index = parseInt(e.target.dataset.slide);
+                        clearInterval(slideInterval);
+                        showSlide(index);
+                        // Restart auto slideshow
+                        slideInterval = setInterval(nextSlide, 5000);
+                    }
+                });
+            }
+
+            // Pause slideshow on hover - Use passive listeners
+            const heroSection = document.querySelector('section');
+            if (heroSection) {
+                heroSection.addEventListener('mouseenter', () => {
+                    clearInterval(slideInterval);
+                }, {
+                    passive: true
+                });
+
+                heroSection.addEventListener('mouseleave', () => {
+                    slideInterval = setInterval(nextSlide, 5000);
+                }, {
+                    passive: true
+                });
+            }
+
+            // Initialize first slide
             showSlide(0);
+
+            // Preload next images for smoother transitions
+            function preloadNextImages() {
+                slides.forEach((slide, index) => {
+                    if (index > 0 && index <= 2) { // Preload first 3 images
+                        const img = new Image();
+                        const bgImage = slide.style.backgroundImage;
+                        const url = bgImage.slice(5, -2); // Remove url(" and ")
+                        img.src = url;
+                    }
+                });
+            }
+
+            // Preload after initial render
+            setTimeout(preloadNextImages, 1000);
         });
 
-        // Debounced smooth scrolling
-        let scrollTimeout;
+        // Smooth scrolling for anchor links - Use passive listeners
         document.addEventListener('click', function(e) {
             const link = e.target.closest('a[href^="#"]');
             if (link) {
                 e.preventDefault();
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    const target = document.querySelector(link.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }, 10);
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
+        }, {
+            passive: false
         });
     </script>
 @endpush

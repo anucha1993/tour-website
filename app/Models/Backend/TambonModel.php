@@ -5,12 +5,12 @@ namespace App\Models\Backend;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BannerSlideModel extends Model
+class TambonModel extends Model
 {
     use HasFactory;
-    protected $table = 'tb_banner_slide';
+    protected $table = 'tb_tambon';
     protected $primaryKey = 'id';
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
+    protected $fillable = ['amupur_code','code','postcode','name_th','name_en'];
+
     public $timestamp = false;
 }

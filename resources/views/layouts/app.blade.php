@@ -37,39 +37,33 @@
 
     <!-- Critical CSS Inline -->
     <style>
-        /* Critical Above-the-fold styles */
+        /* Critical Above-the-fold styles - Minimal */
+        body { font-family: 'Kanit', sans-serif; }
+        
         .hero-slide {
-            background-attachment: scroll !important;
-            background-size: cover !important;
-            background-position: center center !important;
-            background-repeat: no-repeat !important;
-            will-change: transform, opacity;
-            transform: scale(1.05);
-            transition: all 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
+            background-attachment: scroll;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
-
-        .hero-slide.active {
-            opacity: 1 !important;
-            transform: scale(1) !important
-        }
-
-        @media (max-width:768px) {
-            .hero-slide {
-                background-attachment: scroll !important;
-                transform: scale(1.02)
-            }
-
-            .hero-slide.active {
-                transform: scale(1) !important
-            }
-        }
+        
+        /* Essential layout */
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .bg-black { background-color: rgb(0 0 0); }
+        .bg-opacity-30 { background-opacity: 0.3; }
+        .text-white { color: rgb(255 255 255); }
+        .text-center { text-align: center; }
+        .font-bold { font-weight: 700; }
+        .grid { display: grid; }
+        .place-items-center { place-items: center; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
     </style>
 
-    <!-- Fonts with display=swap for better performance -->
-    <!-- Optimized font loading -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <!-- Optimized font loading - Single weight -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
