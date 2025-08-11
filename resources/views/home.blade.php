@@ -9,9 +9,10 @@
 
     <section class="relative isolate">
         <!-- ใช้ภาพ hero ที่บีบอัดขนาดเล็กลง (ตัวอย่าง: 600px) -->
-      <div class="h-[60vh] bg-cover bg-center bg-local"
-     style="background-image: url('{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}');">
-</div>
+      <img src="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}"
+           alt="สำรวจโลกกว้างกับเรา"
+           width="1920" height="800"
+           class="w-full h-[60vh] object-cover object-center block" style="max-height:60vh;">
         <div class="absolute inset-0 -z-10 bg-black/30"></div>
 
         <div class="absolute inset-0 grid place-items-center">
@@ -54,29 +55,27 @@
 
             <div class="overflow-hidden">
                 <div class="flex gap-4 animate-[promo_20s_linear_infinite]">
-
                     <!-- Slide set 1 -->
                     <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000&auto=format&fit=crop"
-                            alt="ภาพ 1" class="w-full aspect-[1/1] object-cover rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=400&auto=format&fit=crop"
+                            alt="ภาพ 1" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
                     </div>
                     <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1000&auto=format&fit=crop"
-                            alt="ภาพ 2" class="w-full aspect-[1/1] object-cover rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=400&auto=format&fit=crop"
+                            alt="ภาพ 2" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
                     </div>
                     <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1000&auto=format&fit=crop"
-                            alt="ภาพ 3" class="w-full aspect-[1/1] object-cover rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=400&auto=format&fit=crop"
+                            alt="ภาพ 3" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
                     </div>
-
                     <!-- Duplicate set for infinite loop -->
                     <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000&auto=format&fit=crop"
-                            alt="ภาพ 1" class="w-full aspect-[1/1] object-cover rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=400&auto=format&fit=crop"
+                            alt="ภาพ 1" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
                     </div>
                     <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1000&auto=format&fit=crop"
-                            alt="ภาพ 2" class="w-full aspect-[1/1] object-cover rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=400&auto=format&fit=crop"
+                            alt="ภาพ 2" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
                     </div>
                     <div class="w-1/5 shrink-0">
                         <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1000&auto=format&fit=crop"
