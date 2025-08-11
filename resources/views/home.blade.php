@@ -9,7 +9,7 @@
 
     <section class="relative isolate">
         <!-- ใช้ภาพ hero ที่บีบอัดขนาดเล็กลง (ตัวอย่าง: 600px) -->
-      <img src="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}"
+      <img src="{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}" width="1200" height="600" class="w-full h-auto max-w-full" alt="Hero" loading="eager"
            alt="สำรวจโลกกว้างกับเรา"
            width="1920" height="800" fetchpriority="high"
            class="w-full h-[60vh] object-cover object-center block" style="max-height:60vh;">
@@ -322,7 +322,7 @@
                 <div
                     class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
                     <div class="relative h-48 sm:h-64 overflow-hidden">
-                        <img src="{{ asset('images/promo/photo-1528181304800-259b08848526.webp') }}"
+                        <img src="{{ asset('images/promo/photo-1528181304800-259b08848526.webp') }}" width="600" height="400" class="w-full h-auto max-w-full" alt="กรุงเทพ เมืองแห่งวัฒนธรรม" loading="lazy"
                             alt="กรุงเทพ" loading="lazy" decoding="async"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
@@ -457,7 +457,7 @@
                 <div class="tab-content grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="popular">
                     <!-- Card -->
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-                        <img src="{{ asset('images/promo/photo-1528909514045-2fa4ac7a08ba1.webp') }}"
+                        <img src="{{ asset('images/promo/photo-1528909514045-2fa4ac7a08ba1.webp') }}" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิวทริป – ไต้หวัน" loading="lazy"
                             alt="" class="h-48 w-full object-cover">
                         <div class="p-4">
                             <div class="flex items-center text-xs text-gray-500 mb-2">
@@ -476,7 +476,7 @@
                 <!-- Cheap -->
                 <div class="tab-content hidden grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="cheap">
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-                        <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}"
+                        <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิวทริป – จิ่วไจ้โกว" loading="lazy"
                             alt="" class="h-48 w-full object-cover">
                         <div class="p-4">
                             <div class="flex items-center text-xs text-gray-500 mb-2">
@@ -621,7 +621,7 @@
                 <article class="lg:col-span-4 overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
                     <!-- ภาพหลัก -->
                     <div class="aspect-[16/10]">
-                        <img src="https://images.unsplash.com/photo-1591076232271-e80adf362a13?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9uZyUyMEtvbmclMjB3b3JzaGlwfGVufDB8fDB8fHww"
+                        <img src="https://images.unsplash.com/photo-1591076232271-e80adf362a13?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9uZyUyMEtvbmclMjB3b3JzaGlwfGVufDB8fDB8fHww" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิวทริป ฮ่องกง ไหว้พระ ราคาดีเว่อร์" loading="lazy"
                             class="h-full w-full object-cover" alt="รีวิวทริป ฮ่องกง ไหว้พระ ราคาดีเว่อร์">
                     </div>
 
@@ -643,7 +643,7 @@
                 <!-- center image card -->
                 <article class="lg:col-span-4 overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
                     <div class="aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1635772512104-98695c3a73f1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Sml1emhhaWdvdXxlbnwwfHwwfHx8MA%3D%3D"
+                        <img src="https://images.unsplash.com/photo-1635772512104-98695c3a73f1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Sml1emhhaWdvdXxlbnwwfHwwfHx8MA%3D%3D" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิว – ไหว้พระจีน" loading="lazy"
                             class="h-full w-full object-cover" alt="รีวิว – ไหว้พระจีน">
                     </div>
                     <div class="p-5">
@@ -655,7 +655,7 @@
                 <!-- right big image card -->
                 <article class="lg:col-span-4 overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
                     <div class="aspect-[16/10]">
-                        <img src="{{ asset('images/promo/photo-1504218727796-db522606b16f.webp') }}"
+                        <img src="{{ asset('images/promo/photo-1504218727796-db522606b16f.webp') }}" width="400" height="300" class="w-full h-auto max-w-full" alt="รีวิว – ธรรมชาติยุโรป" loading="lazy"
                             class="h-full w-full object-cover" alt="รีวิว – ธรรมชาติยุโรป">
                     </div>
                     <div class="p-5">
