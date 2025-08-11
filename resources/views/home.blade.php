@@ -9,9 +9,9 @@
 
     <section class="relative isolate">
         <!-- ใช้ภาพ hero ที่บีบอัดขนาดเล็กลง (ตัวอย่าง: 600px) -->
-        <div
-            class="h-[60vh] bg-[url('https://plus.unsplash.com/premium_photo-1661878091370-4ccb8763756a?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center bg-local">
-        </div>
+      <div class="h-[60vh] bg-cover bg-center bg-local"
+     style="background-image: url('{{ asset('images/hero/bandner_สำรวจโลกกว้างกับเรา.webp') }}');">
+</div>
         <div class="absolute inset-0 -z-10 bg-black/30"></div>
 
         <div class="absolute inset-0 grid place-items-center">
@@ -587,7 +587,7 @@
                             <h3 class="mt-2 text-base font-semibold text-gray-900">รีวิวทริป ไต้หวัน ไหว้พระ ขอพร</h3>
                             <p class="mt-1 text-sm text-gray-600 line-clamp-2">ทริปขอพรเสริมดวงและชิมสตรีทฟู้ดชื่อดัง</p>
                             <div class="mt-3 flex items-center gap-3 text-xs text-gray-500">
-                                <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2b?q=80&w=96&auto=format&fit=crop"
+                                {{-- <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2b?q=80&w=96&auto=format&fit=crop" --}}
                                     class="h-8 w-8 rounded-full object-cover" alt="">
                                 <span>คุณ กันยารัตน์ • 19–21 ก.ค. 68</span>
                             </div>

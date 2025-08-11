@@ -4,7 +4,7 @@
 
 
 <!-- Main Header Section - Desktop Version -->
-<div class="hidden md:block bg-white w-full font-sans border-b border-gray-200" style="font-family: 'Kanit', sans-serif;">
+<div class="hidden md:block bg-white w-full border-b border-gray-200" style="font-family: 'Kanit', sans-serif;">
     <div class="container max-w-7xl mx-auto flex flex-row items-center justify-between py-2 px-4">
         <!-- Logo -->
         <div class="flex items-center min-w-[350px]">
@@ -47,7 +47,7 @@
 </div>
 
 <!-- Mobile Header Section -->
-<div class="md:hidden bg-white w-full font-sans border-b border-gray-200" style="font-family: 'Kanit', sans-serif;">
+<div class="md:hidden bg-white w-full border-b border-gray-200" style="font-family: 'Kanit', sans-serif;">
     <div class="flex items-center justify-between px-4 py-3">
         <!-- Mobile Menu Button -->
         <button id="mobile-menu-button" class="text-gray-600 hover:text-orange-500 focus:outline-none focus:text-orange-500">
@@ -80,7 +80,7 @@
 
 
 <!-- Navigation Bar - Desktop Version -->
-<nav class="hidden md:block w-full bg-[#f7f7ff] border-b border-gray-200 font-sans" style="font-family: 'Kanit', sans-serif;">
+<nav class="hidden md:block w-full bg-[#f7f7ff] border-b border-gray-200" style="font-family: 'Kanit', sans-serif;">
     <div class="container max-w-7xl mx-auto flex flex-row items-center justify-between px-4 h-12">
         <div class="flex flex-row items-center space-x-2">
             <a href="#" class="flex items-center text-orange-500 font-bold px-1 py-0.5 text-xs">
