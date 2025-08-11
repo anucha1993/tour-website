@@ -57,7 +57,7 @@
                 <div class="flex gap-4 animate-[promo_20s_linear_infinite]">
                     <!-- Slide set 1 -->
                     <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=400&auto=format&fit=crop"
+                        <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}"
                             alt="ภาพ 1" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
                     </div>
                     <div class="w-1/5 shrink-0">
@@ -70,7 +70,7 @@
                     </div>
                     <!-- Duplicate set for infinite loop -->
                     <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=400&auto=format&fit=crop"
+                        <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}"
                             alt="ภาพ 1" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
                     </div>
                     <div class="w-1/5 shrink-0">
@@ -78,7 +78,7 @@
                             alt="ภาพ 2" class="w-full aspect-[1/1] object-cover rounded-xl" width="400" height="400" loading="lazy">
                     </div>
                     <div class="w-1/5 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1000&auto=format&fit=crop"
+                        <img src="{{ asset('images/promo/photo-1500530855697-b586d89ba3ee.webp') }}"
                             alt="ภาพ 3" class="w-full aspect-[1/1] object-cover rounded-xl">
                     </div>
                 </div>
@@ -228,7 +228,7 @@
                 <div
                     class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
                     <div class="relative h-48 sm:h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1552550049-db097c9480d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        <img src="{{ asset('images/promo/photo-1552550049-db097c9480d1.webp') }}"
                             alt="เชียงใหม่" loading="lazy" decoding="async"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
@@ -322,7 +322,7 @@
                 <div
                     class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full">
                     <div class="relative h-48 sm:h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        <img src="{{ asset('images/promo/photo-1528181304800-259b08848526.webp') }}"
                             alt="กรุงเทพ" loading="lazy" decoding="async"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
@@ -457,7 +457,7 @@
                 <div class="tab-content grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="popular">
                     <!-- Card -->
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=1000&auto=format&fit=crop"
+                        <img src="{{ asset('images/promo/photo-1528909514045-2fa4ac7a08ba1.webp') }}"
                             alt="" class="h-48 w-full object-cover">
                         <div class="p-4">
                             <div class="flex items-center text-xs text-gray-500 mb-2">
@@ -476,7 +476,7 @@
                 <!-- Cheap -->
                 <div class="tab-content hidden grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="cheap">
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000&auto=format&fit=crop"
+                        <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}"
                             alt="" class="h-48 w-full object-cover">
                         <div class="p-4">
                             <div class="flex items-center text-xs text-gray-500 mb-2">
@@ -489,7 +489,7 @@
                                 class="mt-3 w-full rounded-full bg-orange-500 px-4 py-2 text-white text-sm hover:bg-orange-600">รายละเอียด</button>
                         </div>
                     </div>
-                </div>
+                </div>กรุงเทพ เมืองแห่งวัฒนธรรม
 
                 <!-- Premium -->
                 <div class="tab-content hidden grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="premium">
@@ -512,7 +512,7 @@
                 <!-- Discount -->
                 <div class="tab-content hidden grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="discount">
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1000&auto=format&fit=crop"
+                        <img src="{{ asset('images/promo/photo-1500530855697-b586d89ba3ee.webp') }}"
                             alt="" class="h-48 w-full object-cover">
                         <div class="p-4">
                             <div class="flex items-center text-xs text-gray-500 mb-2">
@@ -577,7 +577,7 @@
                 <div class="lg:col-span-2 grid gap-6">
                     <article class="overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
                         <div class="aspect-[16/10]">
-                            <img src="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=1200&auto=format&fit=crop"
+                            <img src="{{ asset('images/promo/photo-1528909514045-2fa4ac7a08ba1.webp') }}"
                                 class="h-full w-full object-cover" alt="รีวิวทริป – ไต้หวัน">
                         </div>
                         <div class="p-5">
@@ -586,8 +586,8 @@
                             <h3 class="mt-2 text-base font-semibold text-gray-900">รีวิวทริป ไต้หวัน ไหว้พระ ขอพร</h3>
                             <p class="mt-1 text-sm text-gray-600 line-clamp-2">ทริปขอพรเสริมดวงและชิมสตรีทฟู้ดชื่อดัง</p>
                             <div class="mt-3 flex items-center gap-3 text-xs text-gray-500">
-                                {{-- <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2b?q=80&w=96&auto=format&fit=crop" --}}
-                                    class="h-8 w-8 rounded-full object-cover" alt="">
+                                {{-- <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2b?q=80&w=96&auto=format&fit=crop"
+                                    class="h-8 w-8 rounded-full object-cover" alt=""> --}}
                                 <span>คุณ กันยารัตน์ • 19–21 ก.ค. 68</span>
                             </div>
                         </div>
@@ -595,7 +595,7 @@
 
                     <article class="overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
                         <div class="aspect-[16/10]">
-                            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop"
+                            <img src="{{ asset('images/promo/photo-1501785888041-af3ef285b470.webp') }}"
                                 class="h-full w-full object-cover" alt="รีวิวทริป – จิ่วไจ้โกว">
                         </div>
                         <div class="p-5">
@@ -655,7 +655,7 @@
                 <!-- right big image card -->
                 <article class="lg:col-span-4 overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
                     <div class="aspect-[16/10]">
-                        <img src="https://images.unsplash.com/photo-1504218727796-db522606b16f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fFN3aXR6ZXJsYW5kfGVufDB8fDB8fHww"
+                        <img src="{{ asset('images/promo/photo-1504218727796-db522606b16f.webp') }}"
                             class="h-full w-full object-cover" alt="รีวิว – ธรรมชาติยุโรป">
                     </div>
                     <div class="p-5">
